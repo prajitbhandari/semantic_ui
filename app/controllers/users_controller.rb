@@ -1,10 +1,17 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update]}, editor: {except: [:destroy, :new, :create]}, admin: :all
+  require 'byebug'
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    elsif current_user.editor?
+      @users = User.where.not(roles: "admin")
+    else
+      @users = User.where(roles: "user")
+    end
   end
 
   # GET /users/1
@@ -25,7 +32,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -69,6 +75,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.fetch(:user, {})
+      debugger
+      params.require(:user).permit(:id)
     end
 end

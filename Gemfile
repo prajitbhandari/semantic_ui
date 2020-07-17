@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'semantic-ui-sass'
 gem 'jquery-rails'
+gem 'petergate'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

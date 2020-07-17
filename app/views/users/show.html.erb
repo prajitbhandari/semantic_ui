@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<strong>Email:</strong> <%= @user.email %><br/>
+<strong>Address:</strong> <%= @user.address %><br/>
+<%= link_to 'Edit', edit_user_path(@user) if logged_in?(:admin, :editor)%>
 <%= link_to 'Back', users_path %>
