@@ -1,4 +1,5 @@
 <strong>Email:</strong> <%= @user.email %><br/>
 <strong>Address:</strong> <%= @user.address %><br/>
-<%= link_to 'Edit', edit_user_path(@user) if logged_in?(:admin, :editor)%>
+<%= link_to 'Edit',  @user == current_user ? edit_user_registration_path(@user) : edit_user_path(@user) %>
+|
 <%= link_to 'Back', users_path %>

@@ -1,52 +1,28 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  access all: [:show, :index], user: {except: [:destroy, :new, :create, :update]}, editor: {except: [:destroy, :new, :create]}, admin: :all
-  require 'byebug'
-  # GET /users
-  # GET /users.json
+  before_action :set_user, only: [:show, :destroy, :edit, :update]
+  access all: [:show, :index], user: {except: [:destroy]}, editor: {except: [:destroy]}, admin: :all
+
   def index
-    if current_user.admin?
-      @users = User.all
-    elsif current_user.editor?
-      @users = User.where.not(roles: "admin")
-    else
-      @users = User.where(roles: "user")
-    end
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users
-  # POST /users.json
-  def create
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+    if user_signed_in?
+      if current_user.admin?
+        @users = User.all
+      elsif current_user.editor?
+        @users = User.where.not(roles: "admin")
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        @users = User.where(id: current_user.id)
       end
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  def edit
+  end
+
+  def show
+  end
+
   def update
     respond_to do |format|
+      debugger
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
@@ -57,8 +33,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
@@ -70,12 +44,19 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      if User.where(id: params[:id]).present?
+        @user = User.find(params[:id])
+        unless current_user.editor? || current_user.admin?
+          unless @user == current_user
+            redirect_to root_path, alert: 'No such Access'
+          end
+        end
+      else
+        redirect_to root_path, alert: 'No such user available'
+      end
     end
-
     # Only allow a list of trusted parameters through.
     def user_params
-      debugger
-      params.require(:user).permit(:id)
+      params.require(:user).permit(:email, :password, :password_confirmation, :address, roles: [])
     end
 end

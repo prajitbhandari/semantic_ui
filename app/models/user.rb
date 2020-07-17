@@ -13,12 +13,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :set_role
-
-  def set_role
-    self.roles = ['editor']
-    self.save!
-  end
+  # after_create :set_role
+  #
+  # def set_role
+  #   self.roles = ['editor']
+  #   self.save!
+  # end
 
   def admin?
     self.has_roles?(:admin)
@@ -31,5 +31,4 @@ class User < ApplicationRecord
   def user?
     self.has_roles?(:user)
   end
-
 end

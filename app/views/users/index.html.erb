@@ -12,14 +12,16 @@
         <td><%= user.email %></td>
         <td><%= user.address %></td>
         <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) if logged_in?(:admin, :editor) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:admin) %></td>
+        <td><%= link_to 'Edit',  user == current_user ? edit_user_registration_path(user) : edit_user_path(user) %></td>
+        <% unless user.admin?%>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:admin) %></td>
+        <%end %>
       </tr>
     <% end %>
     </tbody>
   </table>
 
   <br>
-  <%= link_to 'New User', new_user_path  if logged_in?(:admin)%>
+  <%= link_to 'New User', new_user_registration_path  if logged_in?(:admin)%>
 
 
