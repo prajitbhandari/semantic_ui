@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyProject</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body>
+  <div class="ui sidebar inverted vertical menu sidebar-menu" id= "sidebar">
+    <div class="item">
+      <div class="header">General</div>
+      <div class="menu">
+        <%= link_to(root_path, class:"item") do %>
+          <div>
+            <i class="icon tachometer alternate"></i>Dashboard
+          </div>
+        <% end%>
+      </div>
+    </div>
+    <div class="item">
+<!--      <div class="header">Administration</div>-->
+      <div class="menu">
+        <%= link_to(root_path, class:" header item") do %>
+          <div><i class="plus user icon"></i>New User</div>
+        <% end%>
+
+        <%= link_to(current_user, class:"item") do %>
+          <div>
+            <i class="info circle icon"></i>
+            Profile
+          </div>
+        <% end%>
+
+        <%= link_to(edit_user_registration_path(current_user), class:"item") do %>
+          <div>
+            <i class="edit icon"></i>
+            Edit Profile
+          </div>
+        <% end%>
+
+        <%= link_to(destroy_user_session_path, class:"item") do %>
+          <div>
+            <i class="sign-out icon"></i>
+            Log Out
+          </div>
+        <% end%>
+      </div>
+    </div>
+  </div>
+  <nav class="ui top fixed inverted menu">
+    <div class="left menu">
+<!--      sidebar-menu-toggler custom class-->
+      <a class="sidebar-menu-toggle item" data-target="#sidebar">
+        <i class="sidebar icon"></i>
+      </a>
+      <%= link_to(root_path, class:" header item") do %>
+        <h3>
+          Admin Panel
+        </h3>
+      <% end%>
+    </div>
+    <div class="right menu">
+      <%= link_to(root_path, class:"item") do %>
+        <div>
+          <i class="bell icon"></i>
+        </div>
+      <% end%>
+      <div class="ui dropdown item">
+        <i class="user circle icon"></i>
+        <div class="menu">
+          <%= link_to(current_user, class:"item") do %>
+            <div>
+              <i class="info circle icon"></i>
+              Profile
+            </div>
+          <% end%>
+
+          <%= link_to(destroy_user_session_path, class:"item") do %>
+            <div>
+              <i class="sign-out icon"></i>
+              Log Out
+            </div>
+          <% end%>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="pusher">
+      <div class="main-content">
+        <div class="ui grid stackable padded">
+          <div class="four wide computer eight wide tablet sixteen wide mobile column">
+            <div class="content">
+              <%= yield%>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
+</html>
