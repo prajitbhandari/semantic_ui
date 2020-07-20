@@ -1,6 +1,24 @@
-<h1>Editing User</h1>
+<style>
+  #user_edit_form{
+    background: #fff;
+    height: 100vh;
+  }
+</style>
 
-<%= render 'form', user: @user %>
+<div id="user_edit_form" class="ui middle aligned centered grid">
+  <div class="six wide computer only  fourteen wide mobile only column">
+    <h2 class="ui center aligned header">
+      <div class="content">
+        Edit User
+      </div>
+    </h2>
+    <div class="ui fluid card">
+      <div class="content">
+        <%= render 'form', user: @user %>
+        <%= link_to 'Show', @user %> |
+        <%= link_to 'Back', users_path %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
