@@ -1,5 +1,33 @@
-<strong>Email:</strong> <%= @user.email %><br/>
-<strong>Address:</strong> <%= @user.address %><br/>
-<%= link_to 'Edit',  @user == current_user ? edit_user_registration_path(@user) : edit_user_path(@user) %>
-|
-<%= link_to 'Back', users_path %>
+<style>
+  #user_show_page{
+    background: #fff;
+    margin-top: 50px;
+    height: 100vh;
+  }
+</style>
+
+<div id="user_show_page" class="ui centered middle aligned grid">
+  <div class="nine wide computer only fourteen wide mobile only column">
+    <div class="content">
+      <div class="ui centered card">
+        <div class="image">
+          <%= image_tag "avatar.jpeg" %>
+        </div>
+        <div class="content">
+          <a class="header"><%= @user.email %></a>
+          <div class="description">
+            <%= @user.address %>
+          </div>
+        </div>
+        <div class="extra content">
+          <%= link_to 'Edit',  @user == current_user ? edit_user_registration_path(@user) : edit_user_path(@user) %>
+          |
+          <%= link_to 'Back', users_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

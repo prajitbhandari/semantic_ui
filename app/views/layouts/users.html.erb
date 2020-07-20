@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyProject</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true%>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+</head>
+<body>
+  <nav class="ui top fixed inverted menu">
+    <div class="left menu">
+      <%= link_to(root_path, class:" header item") do %>
+        <h3>
+          <%= current_user.editor? ? "Editor Panel" : "User Panel" %>
+        </h3>
+      <% end%>
+      <%= link_to(root_path, class:" header item") do %>
+        <h3>
+          <strong>Logged in as:</strong> <%= current_user.email%>
+        </h3>
+      <% end%>
+    </div>
+    <div class="right menu">
+      <%= link_to(root_path, class:" header item") do %>
+        <div>
+          <i class="home icon"></i>
+          Home
+        </div>
+      <% end%>
+
+      <%= link_to(root_path, class:"item") do %>
+        <div>
+          <i class="bell icon"></i>
+        </div>
+      <% end%>
+      <div class="ui dropdown item">
+        <i class="user circle icon"></i>
+        <div class="menu">
+          <%= link_to(current_user, class:"item") do %>
+            <div>
+              <i class="info circle icon"></i>
+              Profile
+            </div>
+          <% end%>
+
+          <%= link_to(destroy_user_session_path, class:"item") do %>
+            <div>
+              <i class="sign-out icon"></i>
+              Log Out
+            </div>
+          <% end%>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield%>
+</body>
+</html>

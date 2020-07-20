@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update]
   access all: [:show, :index], user: {except: [:destroy]}, editor: {except: [:destroy]}, admin: :all
-  layout :determine_layout
   def index
     if user_signed_in?
       if current_user.admin?
@@ -58,15 +57,5 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :address, roles: [])
-    end
-
-    def determine_layout
-      if user_signed_in?
-        if current_user.admin?
-          'admin'
-        else
-          'users'
-        end
-      end
     end
 end

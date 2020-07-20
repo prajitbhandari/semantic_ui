@@ -1,27 +1,46 @@
-  <h1>Users</h1>
-  <table>
-    <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
+<style>
+    #user_index_page{
+      background: #fff;
+      margin-top: 50px;
+    }
+  </style>
 
-    <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.email %></td>
-        <td><%= user.address %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit',  user == current_user ? edit_user_registration_path(user) : edit_user_path(user) %></td>
-        <% unless user.admin?%>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } if logged_in?(:admin) %></td>
-        <%end %>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <div id="user_index_page" class="ui centered grid">
+    <div class="nine wide computer only fourteen wide mobile only column">
+        <div class="content">
+          <h2 class="ui center aligned header">
+            <div class="content">
+              Users
+            </div>
+          </h2>
+          <table class="ui striped table">
+            <thead>
+            <tr>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+            </thead>
 
-  <br>
-  <%= link_to 'New User', new_user_registration_path  if logged_in?(:admin)%>
+            <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.email %></td>
+                <td><%= user.address %></td>
+                <td>
+                  <%= link_to 'Show', user, class: 'ui positive button' %>
+                  <%= link_to 'Edit',  user == current_user ? edit_user_registration_path(user) : edit_user_path(user), class: 'ui primary button'  %>
+                  <% unless user.admin?%>
+                    <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' },  class: 'ui negative button'  if logged_in?(:admin) %>
+                  <%end %>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
 
-
+          <br>
+          <%= link_to 'New User', new_user_registration_path, class: "ui primary button"  if logged_in?(:admin)%>
+        </div>
+      </div>
+  </div>

@@ -22,7 +22,7 @@
     <div class="item">
 <!--      <div class="header">Administration</div>-->
       <div class="menu">
-        <%= link_to(root_path, class:" header item") do %>
+        <%= link_to(new_user_registration_path, class:" header item") do %>
           <div><i class="plus user icon"></i>New User</div>
         <% end%>
 
@@ -33,7 +33,7 @@
           </div>
         <% end%>
 
-        <%= link_to(edit_user_registration_path(current_user), class:"item") do %>
+        <%= link_to(edit_user_registration_path, class:"item") do %>
           <div>
             <i class="edit icon"></i>
             Edit Profile
@@ -60,8 +60,20 @@
           Admin Panel
         </h3>
       <% end%>
+      <%= link_to(root_path, class:" header item") do %>
+        <h3>
+          <strong>Logged in as:</strong> <%= current_user.email%>
+        </h3>
+      <% end%>
     </div>
     <div class="right menu">
+      <%= link_to(root_path, class:" header item") do %>
+        <div>
+          <i class="home icon"></i>
+          Home
+        </div>
+      <% end%>
+
       <%= link_to(root_path, class:"item") do %>
         <div>
           <i class="bell icon"></i>
@@ -87,16 +99,8 @@
       </div>
     </div>
   </nav>
-  <div class="pusher">
-      <div class="main-content">
-        <div class="ui grid stackable padded">
-          <div class="four wide computer eight wide tablet sixteen wide mobile column">
-            <div class="content">
-              <%= yield%>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield%>
 </body>
 </html>

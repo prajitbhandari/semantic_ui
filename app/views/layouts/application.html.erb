@@ -10,6 +10,24 @@
   </head>
 
   <body>
+  <nav class="ui top fixed inverted menu">
+    <div class="left menu">
+      <%= link_to(root_path, class:" header item") do %>
+        <h3>
+          Dummy App
+        </h3>
+      <% end%>
+    </div>
+
+    <div class="right menu">
+      <%= link_to(user_session_path, class:"item") do %>
+        <div>
+          <i class="sign-in icon"></i>
+          Log In
+        </div>
+      <% end%>
+    </div>
+  </nav>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= yield %>
