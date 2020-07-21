@@ -22,7 +22,7 @@
   <div class="item">
     <!--      <div class="header">Administration</div>-->
     <div class="menu">
-      <%= link_to(new_user_registration_path, class:" header item") do %>
+      <%= link_to(new_user_path, class:" header item") do %>
         <div>
           <h4><i class="plus user icon"></i>New User</h4>
         </div>
@@ -37,7 +37,7 @@
         </div>
       <% end%>
 
-      <%= link_to(edit_user_registration_path, class:"item") do %>
+      <%= link_to(edit_user_path(current_user), class:"item") do %>
         <div>
           <h4>
             <i class="edit icon"></i>

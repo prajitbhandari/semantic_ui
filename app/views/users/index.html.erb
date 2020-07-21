@@ -29,7 +29,7 @@
                 <td><%= user.address %></td>
                 <td>
                   <%= link_to 'Show', user, class: 'ui positive button' %>
-                  <%= link_to 'Edit',  user == current_user ? edit_user_registration_path(user) : edit_user_path(user), class: 'ui primary button'  %>
+                  <%= link_to 'Edit',  edit_user_path(user), class: 'ui primary button'  %>
                   <% unless user.admin?%>
                     <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' },  class: 'ui negative button'  if logged_in?(:admin) %>
                   <%end %>
@@ -39,7 +39,7 @@
             </tbody>
           </table>
           <br>
-          <%= link_to 'New User', new_user_registration_path, class: "ui primary button"  if logged_in?(:admin)%>
+          <%= link_to 'New User', new_user_path, class: "ui primary button"  if logged_in?(:admin)%>
         </div>
       </div>
   </div>

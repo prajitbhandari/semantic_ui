@@ -44,7 +44,7 @@
             </div>
           <% end%>
 
-          <%= link_to(destroy_user_session_path, class:"item") do %>
+          <%= link_to(destroy_user_session_path, class:"item", method: :delete) do %>
             <div>
               <i class="sign-out icon"></i>
               Log Out
