@@ -28,7 +28,7 @@
           <% if logged_in?(:admin)  %>
             <div class="field">
               <%= f.label :roles %>
-              <%= f.select :roles, resource.available_roles, {}, {multiple: true}%>
+              <%= f.select :roles, resource.available_roles, {}, class: 'ui fluid dropdown', :multiple => true %>
             </div>
           <% end %>
 

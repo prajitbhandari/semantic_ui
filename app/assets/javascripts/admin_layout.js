@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$( document ).on('turbolinks:load', function() {
     $('.ui.dropdown').dropdown();
     $('.sidebar-menu-toggle').on('click', function() {
         var target = $(this).data('target');
@@ -9,4 +9,4 @@ $(document).ready(function() {
                 mobileTransition: 'overlay'
             }).sidebar('toggle');
     });
-});
+})

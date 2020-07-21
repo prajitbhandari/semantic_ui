@@ -8,99 +8,114 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </head>
 <body>
-  <div class="ui sidebar inverted vertical menu sidebar-menu" id= "sidebar">
-    <div class="item">
-      <div class="header">General</div>
-      <div class="menu">
-        <%= link_to(root_path, class:"item") do %>
-          <div>
-            <i class="icon tachometer alternate"></i>Dashboard
-          </div>
-        <% end%>
-      </div>
+<div class="ui sidebar inverted vertical menu sidebar-menu" id= "sidebar">
+  <div class="item">
+    <div class="header"><h4>General</h4></div>
+    <div class="menu">
+      <%= link_to(root_path, class:"item") do %>
+        <div>
+          <h4><i class="icon tachometer alternate"></i>Dashboard</h4>
+        </div>
+      <% end%>
     </div>
-    <div class="item">
-<!--      <div class="header">Administration</div>-->
-      <div class="menu">
-        <%= link_to(new_user_registration_path, class:" header item") do %>
-          <div><i class="plus user icon"></i>New User</div>
-        <% end%>
+  </div>
+  <div class="item">
+    <!--      <div class="header">Administration</div>-->
+    <div class="menu">
+      <%= link_to(new_user_registration_path, class:" header item") do %>
+        <div>
+          <h4><i class="plus user icon"></i>New User</h4>
+        </div>
+      <% end%>
 
-        <%= link_to(current_user, class:"item") do %>
-          <div>
+      <%= link_to(current_user, class:"item") do %>
+        <div>
+          <h4>
             <i class="info circle icon"></i>
             Profile
-          </div>
-        <% end%>
+          </h4>
+        </div>
+      <% end%>
 
-        <%= link_to(edit_user_registration_path, class:"item") do %>
-          <div>
+      <%= link_to(edit_user_registration_path, class:"item") do %>
+        <div>
+          <h4>
             <i class="edit icon"></i>
             Edit Profile
+          </h4>
+        </div>
+      <% end%>
+
+      <%= link_to(destroy_user_session_path, class:"item", method: :delete) do %>
+        <div>
+          <h4>
+            <i class="sign-out icon"></i>
+            Log Out
+          </h4>
+        </div>
+      <% end%>
+    </div>
+  </div>
+</div>
+<nav class="ui top fixed inverted menu">
+  <div class="left menu">
+    <!--      sidebar-menu-toggler custom class-->
+    <a class="sidebar-menu-toggle item" data-target="#sidebar">
+      <i class="sidebar icon"></i>
+    </a>
+    <%= link_to(root_path, class:" header item") do %>
+      <h4>
+        Admin Panel
+      </h4>
+    <% end%>
+  </div>
+  <div class="right menu">
+    <%= link_to(root_path, class:" header item") do %>
+      <h5 class="center aligned">
+        <strong>Hii:</strong> <%= current_user.email%>
+      </h5>
+    <% end%>
+
+    <%= link_to(root_path, class:" header item") do %>
+      <div>
+        <h4>
+          <i class="home icon"></i>
+          Home
+        </h4>
+      </div>
+    <% end%>
+
+    <%= link_to(root_path, class:"item") do %>
+      <div>
+        <h4><i class="bell icon"></i></h4>
+      </div>
+    <% end%>
+    <div class="ui dropdown item">
+      <i class="user circle icon"></i>
+      <div class="menu">
+        <%= link_to(current_user, class:"item") do %>
+          <div>
+            <h4>
+              <i class="info circle icon"></i>
+              Profile
+            </h4>
           </div>
         <% end%>
 
-        <%= link_to(destroy_user_session_path, class:"item") do %>
+        <%= link_to(destroy_user_session_path, class:"item", method: :delete) do %>
           <div>
-            <i class="sign-out icon"></i>
-            Log Out
+            <h4>
+              <i class="sign-out icon"></i>
+              Log Out
+            </h4>
           </div>
         <% end%>
       </div>
     </div>
   </div>
-  <nav class="ui top fixed inverted menu">
-    <div class="left menu">
-<!--      sidebar-menu-toggler custom class-->
-      <a class="sidebar-menu-toggle item" data-target="#sidebar">
-        <i class="sidebar icon"></i>
-      </a>
-      <%= link_to(root_path, class:" header item") do %>
-        <h3>
-          Admin Panel
-        </h3>
-      <% end%>
-      <%= link_to(root_path, class:" header item") do %>
-        <h3>
-          <strong>Logged in as:</strong> <%= current_user.email%>
-        </h3>
-      <% end%>
-    </div>
-    <div class="right menu">
-      <%= link_to(root_path, class:" header item") do %>
-        <div>
-          <i class="home icon"></i>
-          Home
-        </div>
-      <% end%>
-
-      <%= link_to(root_path, class:"item") do %>
-        <div>
-          <i class="bell icon"></i>
-        </div>
-      <% end%>
-      <div class="ui dropdown item">
-        <i class="user circle icon"></i>
-        <div class="menu">
-          <%= link_to(current_user, class:"item") do %>
-            <div>
-              <i class="info circle icon"></i>
-              Profile
-            </div>
-          <% end%>
-
-          <%= link_to(destroy_user_session_path, class:"item") do %>
-            <div>
-              <i class="sign-out icon"></i>
-              Log Out
-            </div>
-          <% end%>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield%>
+</nav>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+<%= yield%>
 </body>
 </html>

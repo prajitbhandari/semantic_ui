@@ -20,6 +20,13 @@
     </div>
 
     <div class="right menu">
+      <%= link_to(root_path, class:" header item") do %>
+        <div>
+          <i class="home icon"></i>
+          Home
+        </div>
+      <% end%>
+
       <%= link_to(user_session_path, class:"item") do %>
         <div>
           <i class="sign-in icon"></i>
